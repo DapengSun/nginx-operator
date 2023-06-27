@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: operator-dev
+  labels:
+    name: operator-dev
+---
+apiVersion: nginx-operator.nginx-operator/v1
+kind: Nginx
+metadata:
+  labels:
+    app.kubernetes.io/name: nginx
+    app.kubernetes.io/instance: nginx-sample
+    app.kubernetes.io/part-of: kubebuilder
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: kubebuilder
+  name: nginx-sample
+  namespace: operator-dev
+spec:
+  # TODO(user): Add fields here
+  image: nginx:latest
+  port: 30003
+  singlePodQPS: 500
+  totalQPS: 1500
